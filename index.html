@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Observaciones</title>
+
+<style>
+
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+.contenedor{
+    width:340px;
+    background:white;
+    border:2px solid #7a3db8;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.1);
+}
+
+.titulo{
+    background:#7a3db8;
+    color:white;
+    font-weight:bold;
+    text-align:center;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+    font-size:18px;
+}
+
+.item{
+    padding:12px;
+    margin-bottom:8px;
+    border:1px solid transparent;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.item:hover{
+    background:#f5effc;
+}
+
+.item.seleccionado{
+    background:#efe7fa;
+    border-color:#7a3db8;
+    font-weight:600;
+}
+
+button{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.limpiar{
+    background:#b99adf;
+}
+
+.copiar{
+    background:#7a3db8;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <div class="titulo">
+        MINI PROTOCOLO DE ATENCIÓN
+    </div>
+
+    <div class="item">Orden médica ok (física/foto/digital)</div>
+    <div class="item">Pedí Autorización </div>
+    <div class="item">Diagnóstico ok </div>
+    <div class="item">Pedí datos del paciente </div>
+    <div class="item">Indico llevar documentación</div>
+    <div class="item">Indico preparación</div>
+    <div class="item">Indico Estudios previos</div>
+    <div class="item">Indico asistir 15 minutos antes</div>
+
+    <button class="limpiar" onclick="limpiar()">Limpiar</button>
+    <button class="copiar" onclick="copiar()">Copiar</button>
+
+</div>
+
+<script>
+
+document.querySelectorAll('.item').forEach(item=>{
+    item.addEventListener('click',()=>{
+        item.classList.toggle('seleccionado');
+    });
+});
+
+function limpiar(){
+    document.querySelectorAll('.item').forEach(item=>{
+        item.classList.remove('seleccionado');
+    });
+}
+
+function copiar(){
+
+    let seleccionados =
+        [...document.querySelectorAll('.seleccionado')]
+        .map(x => x.innerText);
+
+    if(seleccionados.length===0){
+        alert("No hay elementos seleccionados");
+        return;
+    }
+
+    let texto = seleccionados.join("\n");
+
+    navigator.clipboard.writeText(texto);
+
+    alert("Copiado al portapapeles");
+}
+
+</script>
+
+</body>
+</html>
+
+
+
