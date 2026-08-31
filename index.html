@@ -2,12 +2,17 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Observaciones</title>
 
 <style>
 
+*{
+    box-sizing:border-box;
+}
+
 body{
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Segoe UI', sans-serif;
     background:#f4f4f4;
     display:flex;
     justify-content:center;
@@ -17,38 +22,40 @@ body{
 .contenedor{
     width:500px;
     background:#f7f7f7;
-    border:2px solid #b18ad8;
+    border:2px solid #b89edf;
     border-radius:12px;
-    padding:20px;
+    padding:16px;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
     box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .titulo{
-    background:#7b43c4;
+    background:#7a3db8;
     color:white;
-    font-weight:bold;
     text-align:center;
+    font-weight:bold;
+    font-size:18px;
     padding:12px;
     border-radius:6px;
-    margin-bottom:20px;
-    font-size:18px;
 }
 
 .fila{
     display:flex;
     gap:8px;
-    margin-bottom:12px;
 }
 
 .item{
     flex:1;
-    padding:12px;
+    background:#fafafa;
     border:1px solid #dcc8ed;
     border-radius:8px;
-    background:white;
+    padding:10px 12px;
     cursor:pointer;
-    transition:.2s;
-    box-sizing:border-box;
+    transition:all .2s ease;
 }
 
 .item:hover{
@@ -57,7 +64,7 @@ body{
 
 .item.seleccionado{
     background:#efe7fa;
-    border:2px solid #7b43c4;
+    border:2px solid #7a3db8;
     font-weight:600;
 }
 
@@ -70,19 +77,19 @@ button{
     font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    margin-top:10px;
-}
-
-.limpiar{
-    background:#b69bdc;
-}
-
-.copiar{
-    background:#7b43c4;
+    transition:.2s;
 }
 
 button:hover{
     opacity:.9;
+}
+
+.limpiar{
+    background:#b89edf;
+}
+
+.copiar{
+    background:#7a3db8;
 }
 
 </style>
@@ -98,20 +105,20 @@ button:hover{
 
     <div class="fila">
         <div class="item">Lee orden médica</div>
-        <div class="item">Envía orden médica</div>
+        <div class="item">Envia orden médica</div>
     </div>
 
-    <div class="item">Diagnóstico ok</div><br>
-
-    <div class="item">Pedí Autorización</div><br>
+    <div class="item">
+        Pedí Autorización
+    </div>
 
     <div class="item">
         Indico llevar documentación (orden, cred, DNI, etc)
-    </div><br>
+    </div>
 
     <div class="item">
         Doy preparación y pido llevar estudios previos.
-    </div><br>
+    </div>
 
     <div class="item">
         Pido asistir 15 minutos antes
@@ -129,22 +136,26 @@ button:hover{
 
 <script>
 
-document.querySelectorAll('.item').forEach(item=>{
-    item.addEventListener('click',()=>{
+document.querySelectorAll('.item').forEach(item => {
+
+    item.addEventListener('click', () => {
         item.classList.toggle('seleccionado');
     });
+
 });
 
 function limpiar(){
-    document.querySelectorAll('.item').forEach(item=>{
+
+    document.querySelectorAll('.item').forEach(item => {
         item.classList.remove('seleccionado');
     });
+
 }
 
 function copiar(){
 
-    let seleccionados = [...document.querySelectorAll('.seleccionado')]
-        .map(x => x.innerText);
+    const seleccionados = [...document.querySelectorAll('.item.seleccionado')]
+        .map(item => "• " + item.innerText);
 
     if(seleccionados.length === 0){
         alert("No hay elementos seleccionados");
