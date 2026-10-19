@@ -3,246 +3,236 @@
 <head>
 <meta charset="UTF-8">
 <title>Observaciones</title>
-
+ 
 <style>
-
 body{
-    font-family:'Segoe UI',sans-serif;
-    background:#f4f4f4;
-    display:flex;
-    justify-content:center;
-    padding:20px;
+font-family:'Segoe UI',sans-serif;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+padding:20px;
 }
-
+ 
 .contenedor{
-    width:700px;
-    background:white;
-    border:2px solid #7a3db8;
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
+width:700px;
+background:white;
+border:2px solid #7a3db8;
+border-radius:12px;
+padding:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
-
+ 
 .header{
-    background:#7a3db8;
-    color:white;
-    border-radius:8px;
-    padding:12px 15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+background:#7a3db8;
+color:white;
+border-radius:8px;
+padding:12px 15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
-
+ 
 .titulo{
-    font-size:18px;
-    font-weight:bold;
+font-size:18px;
+font-weight:bold;
 }
-
+ 
 .pestanas button{
-    border:none;
-    background:#b99adf;
-    color:white;
-    padding:8px 15px;
-    margin-left:5px;
-    border-radius:6px;
-    cursor:pointer;
-    font-weight:bold;
+border:none;
+background:#b99adf;
+color:white;
+padding:8px 15px;
+margin-left:5px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
 }
-
+ 
 .pestanas button.activa{
-    background:white;
-    color:#7a3db8;
+background:white;
+color:#7a3db8;
 }
-
+ 
+.fila{
+display:flex;
+gap:15px;
+}
+ 
+.fila .item{
+flex:1;
+}
+ 
 .item{
-    padding:12px;
-    margin-bottom:8px;
-    border:1px solid #d9cbe8;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.2s;
+padding:12px;
+margin-bottom:8px;
+border:1px solid #d9cbe8;
+border-radius:8px;
+cursor:pointer;
+transition:.2s;
 }
-
+ 
 .item:hover{
-    background:#f5effc;
+background:#f5effc;
 }
-
+ 
 .item.seleccionado{
-    background:#efe7fa;
-    border-color:#7a3db8;
-    font-weight:600;
+background:#efe7fa;
+border-color:#7a3db8;
+font-weight:600;
 }
-
+ 
 .categoria{
-    color:#7a3db8;
-    font-weight:bold;
-    margin-top:20px;
-    margin-bottom:10px;
+color:#7a3db8;
+font-weight:bold;
+margin-top:20px;
+margin-bottom:10px;
 }
-
+ 
 button.accion{
-    width:100%;
-    border:none;
-    padding:12px;
-    border-radius:8px;
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    margin-top:10px;
+width:100%;
+border:none;
+padding:12px;
+border-radius:8px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
 }
-
+ 
 .limpiar{
-    background:#b99adf;
+background:#b99adf;
 }
-
+ 
 .copiar{
-    background:#7a3db8;
+background:#7a3db8;
 }
-
-button:hover{
-    opacity:.9;
-}
-
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <div class="contenedor">
-
-    <div class="header">
-
-        <div class="titulo">
-            OBSERVACIONES
-        </div>
-
-        <div class="pestanas">
-            <button class="activa" onclick="mostrar('simple',this)">SIMPLE</button>
-            <button onclick="mostrar('avanzado',this)">AVANZADO</button>
-        </div>
-
-    </div>
-
-    <!-- OBSERVACIONES BÁSICAS -->
-
-    <div id="basicas">
-
-        <div class="item">Lee orden médica</div>
-        <div class="item">Envía orden médica</div>
-        <div class="item">Pedí autorización</div>
-        <div class="item">Indico llevar documentación (orden, credencial, DNI, etc.)</div>
-        <div class="item">Doy preparación y pido llevar estudios previos</div>
-        <div class="item">Pido asistir 15 minutos antes</div>
-
-    </div>
-
-    <!-- SOLO SE VE EN AVANZADO -->
-
-    <div id="avanzadas" style="display:none;">
-
-        <div class="categoria">Observaciones comunes Ecografía</div>
-
-        <div class="item">Pide médico específico</div>
-        <div class="item">Aviso que el consultorio es docente</div>
-        <div class="item">Solicita Eco TV con médica mujer</div>
-        <div class="item">Indico retención de orina</div>
-
-        <div class="categoria">Observaciones comunes Resonancia</div>
-
-        <div class="item">Paciente claustrofóbico</div>
-        <div class="item">Verifico implantes compatibles para RM</div>
-        <div class="item">Consulta por sedación</div>
-
-        <div class="categoria">Observaciones comunes Tomografía</div>
-
-        <div class="item">Solicito creatinina vigente</div>
-        <div class="item">Verifico alergia al contraste</div>
-
-        <div class="categoria">Observaciones comunes Laboratorio</div>
-
-        <div class="item">Indico ayuno</div>
-        <div class="item">Confirmo horario de extracción</div>
-
-    </div>
-
-    <button class="accion limpiar" onclick="limpiar()">
-        Limpiar
-    </button>
-
-    <button class="accion copiar" onclick="copiar()">
-        Copiar
-    </button>
-
+ 
+<div class="header">
+<div class="titulo">OBSERVACIONES</div>
+ 
+<div class="pestanas">
+<button class="activa" onclick="mostrar('simple',this)">SIMPLE</button>
+<button onclick="mostrar('avanzado',this)">AVANZADO</button>
 </div>
-
+</div>
+ 
+<div class="fila">
+<div class="item">Lee orden médica</div>
+<div class="item">Envia orden médica</div>
+</div>
+ 
+<div class="item">Pedí Autorización</div>
+ 
+<div class="item">
+Indico llevar documentación (orden, cred, DNI, etc)
+</div>
+ 
+<div class="item">
+Doy preparación y pido llevar estudios previos
+</div>
+ 
+<div class="item">
+Pido asistir 15 minutos antes
+</div>
+ 
+<div id="avanzadas" style="display:none;">
+ 
+<div class="categoria">
+Observaciones comunes Ecografía
+</div>
+ 
+<div class="item">Pide médico específico:</div>
+ 
+<div class="item">
+Aviso que el consultorio es docente
+</div>
+ 
+<div class="item">
+Pide Eco Tv con Médica Mujer
+</div>
+ 
+<div class="categoria">
+Observaciones comunes Resonancia
+</div>
+ 
+<div class="item">
+Tiene implantes metálicos compatibles
+</div>
+ 
+<div class="item">
+Paciente claustrofóbico
+</div>
+ 
+</div>
+ 
+<button class="accion limpiar" onclick="limpiar()">
+Limpiar
+</button>
+ 
+<button class="accion copiar" onclick="copiar()">
+Copiar
+</button>
+ 
+</div>
+ 
 <script>
-
-document.querySelectorAll('.item').forEach(item=>{
-
-    item.addEventListener('click',()=>{
-
-        item.classList.toggle('seleccionado');
-
-    });
-
+ 
+document.addEventListener('click', function(e){
+ 
+if(e.target.classList.contains('item')){
+e.target.classList.toggle('seleccionado');
+}
+ 
 });
-
-function mostrar(tipo,btn){
-
-    document.querySelectorAll('.pestanas button').forEach(b=>{
-
-        b.classList.remove('activa');
-
-    });
-
-    btn.classList.add('activa');
-
-    if(tipo==='simple'){
-
-        document.getElementById('avanzadas').style.display='none';
-
-    }else{
-
-        document.getElementById('avanzadas').style.display='block';
-
-    }
-
+ 
+function mostrar(tipo, boton){
+ 
+document.querySelectorAll('.pestanas button')
+.forEach(btn => btn.classList.remove('activa'));
+ 
+boton.classList.add('activa');
+ 
+if(tipo === 'simple'){
+document.getElementById('avanzadas').style.display = 'none';
+}else{
+document.getElementById('avanzadas').style.display = 'block';
 }
-
+ 
+}
+ 
 function limpiar(){
-
-    document.querySelectorAll('.item').forEach(item=>{
-
-        item.classList.remove('seleccionado');
-
-    });
-
+ 
+document.querySelectorAll('.item')
+.forEach(item => item.classList.remove('seleccionado'));
+ 
 }
-
+ 
 function copiar(){
-
-    let seleccionados =
-        [...document.querySelectorAll('.seleccionado')]
-        .map(x => x.innerText);
-
-    if(seleccionados.length===0){
-
-        alert('No hay elementos seleccionados');
-        return;
-
-    }
-
-    let texto=seleccionados.join('\n');
-
-    navigator.clipboard.writeText(texto);
-
-    alert('Copiado al portapapeles');
-
+ 
+let texto = [...document.querySelectorAll('.item.seleccionado')]
+.map(item => item.innerText)
+.join('\n');
+ 
+if(texto === ''){
+alert('No hay elementos seleccionados');
+return;
 }
-
+ 
+navigator.clipboard.writeText(texto);
+alert('Copiado al portapapeles');
+ 
+}
+ 
 </script>
-
+ 
 </body>
 </html>
+Proporcione sus comentarios sobre BizChat
