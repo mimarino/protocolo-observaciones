@@ -9,6 +9,8 @@
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
@@ -20,42 +22,45 @@ body{
 }
 
 .contenedor{
-    width:500px;
+    width:920px;
     background:#f7f7f7;
-    border:2px solid #b89edf;
+    border:2px solid #d7c6e8;
     border-radius:12px;
-    padding:16px;
-
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-
+    padding:20px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: 60% 40%;
+    gap:15px;
 }
 
 .titulo{
     background:#7a3db8;
     color:white;
-    text-align:center;
     font-weight:bold;
     font-size:18px;
-    padding:12px;
-    border-radius:6px;
+    padding:16px 24px;
+    border-radius:10px;
+    margin-bottom:18px;
 }
 
 .fila{
     display:flex;
-    gap:8px;
+    gap:14px;
+    margin-bottom:14px;
 }
 
 .item{
     flex:1;
-    background:#fafafa;
+    background:white;
     border:1px solid #dcc8ed;
     border-radius:8px;
-    padding:10px 12px;
+    padding:12px;
     cursor:pointer;
-    transition:all .2s ease;
+    transition:.2s;
+    font-size:16px;
 }
 
 .item:hover{
@@ -68,28 +73,56 @@ body{
     font-weight:600;
 }
 
+.bloque{
+    margin-bottom:16px;
+}
+
+.subtitulo{
+    color:#7a3db8;
+    font-size:14px;
+    font-weight:700;
+    margin-bottom:8px;
+}
+
+.botonera{
+    margin-top:10px;
+}
+
 button{
     width:100%;
     border:none;
-    padding:12px;
-    border-radius:6px;
+    padding:14px;
+    border-radius:10px;
     color:white;
-    font-size:16px;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
     transition:.2s;
+    margin-top:10px;
+}
+
+.limpiar{
+    background:#b194d6;
+}
+
+.copiar{
+    background:#7a3db8;
 }
 
 button:hover{
     opacity:.9;
 }
 
-.limpiar{
-    background:#b89edf;
-}
+@media(max-width:768px){
 
-.copiar{
-    background:#7a3db8;
+    .contenedor{
+        width:100%;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
 </style>
@@ -99,49 +132,101 @@ button:hover{
 
 <div class="contenedor">
 
-    <div class="titulo">
-        OBSERVACIONES
+    <div class="grid">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div>
+
+            <div class="titulo">
+                OBSERVACIONES
+            </div>
+
+            <div class="fila">
+                <div class="item">Lee orden médica</div>
+                <div class="item">Envia orden médica</div>
+            </div>
+
+            <div class="item" style="margin-bottom:14px">
+                Pedí Autorización
+            </div>
+
+            <div class="item" style="margin-bottom:14px">
+                Indico llevar documentación (orden, cred, DNI, etc)
+            </div>
+
+            <div class="item" style="margin-bottom:14px">
+                Doy preparación y pido llevar estudios previos
+            </div>
+
+            <div class="item">
+                Pido asistir 15 minutos antes
+            </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div>
+
+            <div class="bloque">
+
+                <div class="subtitulo">
+                    Observaciones comunes Ecografía
+                </div>
+
+                <div class="item" style="margin-bottom:14px">
+                    Pide médico específico:
+                </div>
+
+                <div class="item" style="margin-bottom:14px">
+                    Aviso que el consultorio es docente
+                </div>
+
+                <div class="item">
+                    Pide Eco Tv con Médica Mujer
+                </div>
+
+            </div>
+
+            <div class="bloque">
+
+                <div class="subtitulo">
+                    Observaciones comunes Resonancia
+                </div>
+
+                <div class="item" style="margin-bottom:14px">
+                    Tiene implantes metálicos compatibles
+                </div>
+
+                <div class="item">
+                    Paciente claustrofóbico
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="fila">
-        <div class="item">Lee orden médica</div>
-        <div class="item">Envia orden médica</div>
+    <div class="botonera">
+
+        <button class="limpiar" onclick="limpiar()">
+            Limpiar
+        </button>
+
+        <button class="copiar" onclick="copiar()">
+            Copiar
+        </button>
+
     </div>
-
-    <div class="item">
-        Pedí Autorización
-    </div>
-
-    <div class="item">
-        Indico llevar documentación (orden, cred, DNI, etc)
-    </div>
-
-    <div class="item">
-        Doy preparación y pido llevar estudios previos.
-    </div>
-
-    <div class="item">
-        Pido asistir 15 minutos antes
-    </div>
-
-    <button class="limpiar" onclick="limpiar()">
-        Limpiar
-    </button>
-
-    <button class="copiar" onclick="copiar()">
-        Copiar
-    </button>
 
 </div>
 
 <script>
 
 document.querySelectorAll('.item').forEach(item => {
-
     item.addEventListener('click', () => {
         item.classList.toggle('seleccionado');
     });
-
 });
 
 function limpiar(){
